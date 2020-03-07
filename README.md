@@ -19,7 +19,7 @@ $ npm install drag-scroll
 Notice: the target element must have a position defined
 
 ### basic
-    import dragScroll from './drag-scroll'
+    import dragScroll from '@wolff-h/drag-scroll'
 
     dragScroll({
         element: target_element,
