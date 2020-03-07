@@ -1,7 +1,7 @@
 {
   "name": "@wolff-h/drag-scroll",
-  "version": "1.0.2",
-  "description": "$ npm install drag-scroll",
+  "version": "1.0.3",
+  "description": "$ npm install @wolff-h/drag-scroll",
   "main": "src/drag-scroll.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
