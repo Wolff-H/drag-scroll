@@ -1,6 +1,6 @@
 {
   "name": "@wolff-h/drag-scroll",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "$ npm install @wolff-h/drag-scroll",
   "main": "src/drag-scroll.js",
   "scripts": {
