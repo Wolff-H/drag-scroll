@@ -3,7 +3,7 @@
 ## install
 
 ### npm
-$ npm install drag-scroll
+$ npm install @wolff-h/drag-scroll
 
 ### &lt;script&gt; // as a module
 
