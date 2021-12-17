@@ -52,10 +52,10 @@ interface ScrollableData
 
 /**
  * Offers ability of scrolling element by dragging.
- * @param draggable Draggable. The trigger element for dragscroll action.//拖拽物，即拖滚行为的触发者。
- * @param scrollable Scrollable. The Responsive element for dragscroll action.//     滚动物，即拖滚行为的响应者。如果传入null，则销毁该draggable的记录。
- * @param movement Movement constraint.//     运动配置。分别规定x轴、y轴的拖滚触发与响应行为，格式为[拖拽触发阈值，滚动响应矢量]。设置swapped为true令拖滚轴对换。设置constrained为true令拖滚行为只当鼠标在拖拽物上时才发生。传入一个avoid元素数组，拖滚将不会在这些元素上发生。
- * @param options Options.//其他配置。如果设定了override为true，则在该draggable下的scrollable的创建和更新将会覆写整个scrollable_data_array数组为仅含传入的这一个，否则，只会添加或更新传入的scrollable。
+ * @param draggable Draggable. The trigger element for dragscroll action.
+ * @param scrollable Scrollable. The Responsive element for dragscroll action.
+ * @param movement Movement constraint.
+ * @param options Options.
  */
 function dragScroll(
     draggable: HTMLElement,

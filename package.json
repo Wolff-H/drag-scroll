@@ -1,10 +1,15 @@
 {
     "name": "dragroll",
     "version": "1.0.0",
-    "description": "$ npm install @wolff-h/drag-scroll",
+    "description": "$ npm install dragroll",
     "main": "es/index.mjs",
+    "typings": "es/index.d.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wolff-h/drag-scroll.git"
     },
     "keywords": [],
     "author": "wolff-h",
