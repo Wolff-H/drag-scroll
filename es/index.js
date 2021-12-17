@@ -39,7 +39,7 @@ function dragScroll(draggable, scrollable, options = {}) {
             ...options.movement,
         }
     };
-    // take one desired action -----------------------------------------------------------------------------------------
+    // do action -------------------------------------------------------------------------------------------------------
     // #1. destroy - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // remove whole record //
     if (scrollable === null) {

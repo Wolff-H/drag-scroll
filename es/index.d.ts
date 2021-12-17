@@ -1,9 +1,9 @@
-interface Movement {
+export declare interface Movement {
     x: [drag_trigger_threshold: number, scroll_respond_vector: number];
     y: [drag_trigger_threshold: number, scroll_respond_vector: number];
     swapped: boolean;
 }
-interface DraggableData {
+export declare interface DraggableData {
     mouse_start_x: number;
     mouse_start_y: number;
     avoid: HTMLElement[];
@@ -14,7 +14,7 @@ interface DraggableData {
         dragEnd?: (event: MouseEvent, draggable: HTMLElement, draggable_data: DraggableData) => void;
     };
 }
-interface ScrollableData {
+export declare interface ScrollableData {
     scrollable: HTMLElement;
     scrollable_start_scroll_x: number;
     scrollable_start_scroll_y: number;
@@ -28,7 +28,7 @@ interface ScrollableData {
  * @param movement Movement constraint.
  * @param options Options.
  */
-declare function dragScroll(draggable: HTMLElement, scrollable: HTMLElement | null, options?: {
+export declare function dragScroll(draggable: HTMLElement, scrollable: HTMLElement | null, options?: {
     movement?: {
         x?: [number, number];
         y?: [number, number];
