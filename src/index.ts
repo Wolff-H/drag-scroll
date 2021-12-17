@@ -51,11 +51,11 @@ interface ScrollableData
 
 
 /**
- * 
- * @param draggable 拖拽物，即拖滚行为的触发者。
- * @param scrollable 滚动物，即拖滚行为的响应者。如果传入null，则销毁该draggable的记录。
- * @param movement 运动配置。分别规定x轴、y轴的拖滚触发与响应行为，格式为[拖拽触发阈值，滚动响应矢量]。设置swapped为true令拖滚轴对换。设置constrained为true令拖滚行为只当鼠标在拖拽物上时才发生。传入一个avoid元素数组，拖滚将不会在这些元素上发生。
- * @param options 其他配置。如果设定了override为true，则在该draggable下的scrollable的创建和更新将会覆写整个scrollable_data_array数组为仅含传入的这一个，否则，只会添加或更新传入的scrollable。
+ * Offers ability of scrolling element by dragging.
+ * @param draggable Draggable. The trigger element for dragscroll action.//拖拽物，即拖滚行为的触发者。
+ * @param scrollable Scrollable. The Responsive element for dragscroll action.//     滚动物，即拖滚行为的响应者。如果传入null，则销毁该draggable的记录。
+ * @param movement Movement constraint.//     运动配置。分别规定x轴、y轴的拖滚触发与响应行为，格式为[拖拽触发阈值，滚动响应矢量]。设置swapped为true令拖滚轴对换。设置constrained为true令拖滚行为只当鼠标在拖拽物上时才发生。传入一个avoid元素数组，拖滚将不会在这些元素上发生。
+ * @param options Options.//其他配置。如果设定了override为true，则在该draggable下的scrollable的创建和更新将会覆写整个scrollable_data_array数组为仅含传入的这一个，否则，只会添加或更新传入的scrollable。
  */
 function dragScroll(
     draggable: HTMLElement,
@@ -102,8 +102,8 @@ function dragScroll(
     {
         window.__DragScroll =
         {
-            tool_name: '_drag-scroll',
-            description: 'Scroll elements corresponding to a _drag behavior.',
+            tool_name: 'drag-scroll',
+            description: 'Scroll elements corresponding to a drag behavior.',
             draggable_to_draggable_data_map: new WeakMap(),
             active_draggable: null,
         } as DragScrollData
@@ -216,7 +216,7 @@ function dragScroll(
         {
             const draggable_data = map.get(draggable)
             /*
-                !!! TODO： update应当作一次全新初始化
+                !!! TODO： update should be a brand new initialization
             */
             if(draggable_data)
             {
@@ -229,7 +229,7 @@ function dragScroll(
                 if(target_scrollable_data)
                 {
                     target_scrollable_data.movement = _options.movement
-                    target_scrollable_data.constrained = _options.constrained
+                    // target_scrollable_data.constrained = _options.constrained
                 }
             }
         }
@@ -260,16 +260,16 @@ function _dragStart(this: HTMLElement, event: MouseEvent)
     const map: DraggableToDraggableDataMap = window.__DragScroll.draggable_to_draggable_data_map
     const draggable_data = map.get(draggable)!
 
-    // 调用自定义hook //
+    // use custom hook //
     if(draggable_data.hooks?.dragStart && draggable_data.hooks?.dragStart(event, draggable, draggable_data) === false) return
 
-    // 仅当鼠标不是在避免元素上按下 //
+    // drag starts only when not mousedown on avoid //
     if(!draggable_data.avoid.includes(event.target as HTMLElement))
     {
         draggable_data.mouse_start_x = event.clientX
         draggable_data.mouse_start_y = event.clientY
     
-        // 初始化 scrollable_data_array //
+        // initialize scrollable_data_array //
         for(const scrollable_data of draggable_data.scrollable_data_array)
         {
             const { scrollable } = scrollable_data
@@ -291,7 +291,7 @@ function _drag(event: MouseEvent)
     const map: DraggableToDraggableDataMap = window.__DragScroll.draggable_to_draggable_data_map
     const draggable_data = map.get(draggable)!
 
-    // 调用自定义hook //
+    // use custom hook //
     if(draggable_data.hooks?.drag && draggable_data.hooks?.drag(event, draggable, draggable_data) === false) return
 
     let i = draggable_data.scrollable_data_array.length
@@ -300,15 +300,15 @@ function _drag(event: MouseEvent)
     {
         const scrollable_data = draggable_data.scrollable_data_array[i]
 
-        if(scrollable_data.scrollable)    // 用户有可能在删除scrollable时，并没有手动清除scrollable_data_array中保存的对应数据
+        if(scrollable_data.scrollable)    // check if the scrollable is obsolete
         {
             if(!scrollable_data.constrained || event.target === draggable)
             {
-                // draggable触发步数（1份阈值触发1步） //
+                // drag_trigger_threshold (1 threshold triggers 1 step) //
                 const step_x = Math.ceil((draggable_data.mouse_start_x - event.clientX) / scrollable_data.movement.x[0])
                 const step_y = Math.ceil((draggable_data.mouse_start_y - event.clientY) / scrollable_data.movement.y[0])
         
-                // scrollable响应矢量 //
+                // scroll_respond_vector //
                 let scroll_x = 0, scroll_y = 0
         
                 if(scrollable_data.movement.swapped)
@@ -322,7 +322,7 @@ function _drag(event: MouseEvent)
                     scroll_y = step_y * scrollable_data.movement.y[1]  
                 }
         
-                // 应用滚动 //
+                // apply scroll //
                 if(scrollable_data.movement.x[0] !== 0 && scrollable_data.movement.x[1] !== 0)
                 {
                     scrollable_data.scrollable.scrollLeft = scroll_x + scrollable_data.scrollable_start_scroll_x
@@ -335,7 +335,7 @@ function _drag(event: MouseEvent)
         }
         else
         {
-            // 在这里清理掉失效的scrollable_data（其dom元素被销毁了）
+            // clean obsolete scrollable_data (as its relevant dom has been destroyed) //
             draggable_data.scrollable_data_array.splice(i, 1)
         }
     }
@@ -350,7 +350,7 @@ function _dragEnd(event: MouseEvent)
     document.removeEventListener('mousemove', _drag)
     document.removeEventListener('mouseup', _dragEnd)
 
-    // 调用自定义hook //
+    // use custom hook //
     if(draggable_data.hooks?.dragEnd)
     {
         draggable_data.hooks?.dragEnd(event, draggable, draggable_data)
