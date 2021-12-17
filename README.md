@@ -84,4 +84,25 @@ function dragScroll(
     
     - `constrained`
 
-        When 
+        When true, dragscroll will only happen when cursor is inside scrollable.
+    
+    - `avoid`
+
+        Dragscroll will not happen on those elements.
+    
+    - `hooks`
+
+        Custom hooks.
+
+        - `dragStart`
+
+            Call when drag starts. Return `false` to prevent default behaviour.
+
+        - `drag`
+
+            Call on each drag move. Return `false` to prevent default behaviour.
+
+        - `dragEnd`
+
+            Call when drag ends.
+
