@@ -1,12 +1,12 @@
 {
-  "name": "@wolff-h/drag-scroll",
-  "version": "1.0.4",
-  "description": "$ npm install @wolff-h/drag-scroll",
-  "main": "src/drag-scroll.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "wolff-h",
-  "license": "MIT"
+    "name": "dragroll",
+    "version": "1.0.0",
+    "description": "$ npm install @wolff-h/drag-scroll",
+    "main": "es/index.mjs",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "wolff-h",
+    "license": "MIT"
 }
