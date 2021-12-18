@@ -136,11 +136,12 @@ function dragScroll(draggable, scrollable, options = {}) {
     }
 }
 function _dragStart(event) {
+    var _a, _b;
     const draggable = this;
     const map = window.__DragScroll.draggable_to_draggable_data_map;
     const draggable_data = map.get(draggable);
     // use custom hook //
-    if (draggable_data.hooks?.dragStart && draggable_data.hooks?.dragStart(event, draggable, draggable_data) === false)
+    if (((_a = draggable_data.hooks) === null || _a === void 0 ? void 0 : _a.dragStart) && ((_b = draggable_data.hooks) === null || _b === void 0 ? void 0 : _b.dragStart(event, draggable, draggable_data)) === false)
         return;
     // drag starts only when not mousedown on avoid //
     if (!draggable_data.avoid.includes(event.target)) {
@@ -158,11 +159,12 @@ function _dragStart(event) {
     }
 }
 function _drag(event) {
+    var _a, _b;
     const draggable = window.__DragScroll.active_draggable;
     const map = window.__DragScroll.draggable_to_draggable_data_map;
     const draggable_data = map.get(draggable);
     // use custom hook //
-    if (draggable_data.hooks?.drag && draggable_data.hooks?.drag(event, draggable, draggable_data) === false)
+    if (((_a = draggable_data.hooks) === null || _a === void 0 ? void 0 : _a.drag) && ((_b = draggable_data.hooks) === null || _b === void 0 ? void 0 : _b.drag(event, draggable, draggable_data)) === false)
         return;
     let i = draggable_data.scrollable_data_array.length;
     while (i--) {
@@ -199,14 +201,15 @@ function _drag(event) {
     }
 }
 function _dragEnd(event) {
+    var _a, _b;
     const draggable = window.__DragScroll.active_draggable;
     const map = window.__DragScroll.draggable_to_draggable_data_map;
     const draggable_data = map.get(draggable);
     document.removeEventListener('mousemove', _drag);
     document.removeEventListener('mouseup', _dragEnd);
     // use custom hook //
-    if (draggable_data.hooks?.dragEnd) {
-        draggable_data.hooks?.dragEnd(event, draggable, draggable_data);
+    if ((_a = draggable_data.hooks) === null || _a === void 0 ? void 0 : _a.dragEnd) {
+        (_b = draggable_data.hooks) === null || _b === void 0 ? void 0 : _b.dragEnd(event, draggable, draggable_data);
     }
 }
 export default dragScroll;

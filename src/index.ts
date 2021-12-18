@@ -1,3 +1,5 @@
+'use strict'
+
 interface Movement
 {
     x: [drag_trigger_threshold: number, scroll_respond_vector: number]
