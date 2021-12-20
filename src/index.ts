@@ -233,24 +233,24 @@ function dragScroll(
                     target_scrollable_data.movement = _options.movement
                     // target_scrollable_data.constrained = _options.constrained
                 }
-            }
-        }
-        // add the passed scrollable_data as a new one to scrollable_data_array //
-        else
-        {
-            const draggable_data = map.get(draggable)
+                // add the passed scrollable_data as a new one to scrollable_data_array //
+                else
+                {
+                    const draggable_data = map.get(draggable)
 
-            if(draggable_data)
-            {
-                draggable_data.scrollable_data_array.push(
+                    if(draggable_data)
                     {
-                        scrollable: scrollable,
-                        scrollable_start_scroll_x: 0,
-                        scrollable_start_scroll_y: 0,
-                        movement: _options.movement,
-                        constrained: _options.constrained,
+                        draggable_data.scrollable_data_array.push(
+                            {
+                                scrollable: scrollable,
+                                scrollable_start_scroll_x: 0,
+                                scrollable_start_scroll_y: 0,
+                                movement: _options.movement,
+                                constrained: _options.constrained,
+                            }
+                        )
                     }
-                )
+                }
             }
         }
     }
