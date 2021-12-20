@@ -3,6 +3,21 @@ interface Movement {
     y: [drag_trigger_threshold: number, scroll_respond_vector: number];
     swapped: boolean;
 }
+interface Options {
+    movement: Movement;
+    destroy: boolean;
+    override: boolean;
+    avoid: HTMLElement[];
+    constrained: boolean;
+    hooks: DraggableData["hooks"];
+}
+interface DragScrollData {
+    tool_name: string;
+    description: string;
+    draggable_to_draggable_data_map: DraggableToDraggableDataMap;
+    active_draggable: HTMLElement | null;
+}
+declare type DraggableToDraggableDataMap = WeakMap<HTMLElement, DraggableData>;
 interface DraggableData {
     mouse_start_x: number;
     mouse_start_y: number;
@@ -25,7 +40,6 @@ interface ScrollableData {
  * Offers ability of scrolling element by dragging.
  * @param draggable Draggable. The trigger element for dragscroll action.
  * @param scrollable Scrollable. The Responsive element for dragscroll action.
- * @param movement Movement constraint.
  * @param options Options.
  */
 declare function dragScroll(draggable: HTMLElement, scrollable: HTMLElement | null, options?: {
@@ -44,4 +58,5 @@ declare function dragScroll(draggable: HTMLElement, scrollable: HTMLElement | nu
         dragEnd?: (event: MouseEvent, draggable: HTMLElement, draggable_data: DraggableData) => void;
     };
 }): void;
+export { Movement, Options, DragScrollData, DraggableToDraggableDataMap, DraggableData, ScrollableData, };
 export default dragScroll;

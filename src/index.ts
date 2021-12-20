@@ -56,7 +56,6 @@ interface ScrollableData
  * Offers ability of scrolling element by dragging.
  * @param draggable Draggable. The trigger element for dragscroll action.
  * @param scrollable Scrollable. The Responsive element for dragscroll action.
- * @param movement Movement constraint.
  * @param options Options.
  */
 function dragScroll(
@@ -360,5 +359,15 @@ function _dragEnd(event: MouseEvent)
 }
 
 
+
+export
+{
+    Movement,
+    Options,
+    DragScrollData,
+    DraggableToDraggableDataMap,
+    DraggableData,
+    ScrollableData,
+}
 
 export default dragScroll

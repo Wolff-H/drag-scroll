@@ -3,7 +3,6 @@
  * Offers ability of scrolling element by dragging.
  * @param draggable Draggable. The trigger element for dragscroll action.
  * @param scrollable Scrollable. The Responsive element for dragscroll action.
- * @param movement Movement constraint.
  * @param options Options.
  */
 function dragScroll(draggable, scrollable, options = {}) {
